@@ -7,7 +7,19 @@ export const sharedSkillsRoot = join(here, "..");
 export const frontendSkillRoot = join(sharedSkillsRoot, "skills", "frontend");
 export const upstreamsRoot = join(sharedSkillsRoot, "upstreams");
 
-export const designOriginals = ["README.md", "_INDEX.md", "design-system-architecture.md", "react-dev-tooling-skill.md"];
+export const designOriginals = [
+	"README.md",
+	"_INDEX.md",
+	"aside.md",
+	"clone-from-url.md",
+	"design-system-architecture.md",
+	"interaction-skill.md",
+	"layout-skill.md",
+	"lazyweb.md",
+	"print-paged-media.md",
+	"react-dev-tooling-skill.md",
+	"stylegallery.md",
+];
 
 export const brandStems = [
 	"airbnb", "airtable", "apple", "binance", "bmw", "bugatti", "cal", "claude", "clay", "clickhouse",
@@ -32,6 +44,12 @@ export const tasteSkillFiles = {
 	"imagegen-frontend-web.md": "skills/imagegen-frontend-web/SKILL.md",
 	"imagegen-frontend-mobile.md": "skills/imagegen-frontend-mobile/SKILL.md",
 	"imagegen-brandkit.md": "skills/brandkit/SKILL.md",
+};
+
+// Non-SKILL.md taste-skill artifact: upstream ships stitch-skill with a worked
+// example of the DESIGN.md document that skill exports.
+export const tasteSkillArtifactFiles = {
+	"stitch-design-example.md": "skills/stitch-skill/DESIGN.md",
 };
 
 export const uiUxDbFileRenames = {
@@ -87,6 +105,9 @@ export function designMaterializeMap() {
 		};
 	}
 	for (const [fileName, source] of Object.entries(tasteSkillFiles)) {
+		map[`references/design/${fileName}`] = { upstream: "taste-skill", source };
+	}
+	for (const [fileName, source] of Object.entries(tasteSkillArtifactFiles)) {
 		map[`references/design/${fileName}`] = { upstream: "taste-skill", source };
 	}
 	return map;
